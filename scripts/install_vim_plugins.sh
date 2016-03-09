@@ -47,7 +47,7 @@ Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/ervandew/supertab.git'
 Plug 'http://github.com/kien/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'http://github.com/scrooloose/syntastic.git'
-Plug 'http://github.com/bling/vim-airline.git'
+Plug 'http://github.com/vim-airline/vim-airline-themes'
 Plug 'http://github.com/taku-o/vim-changed.git'
 Plug 'http://github.com/rodjek/vim-puppet.git'
 Plug 'http://github.com/derekwyatt/vim-scala.git'
@@ -57,7 +57,6 @@ Plug 'http://github.com/tpope/vim-commentary'
 Plug 'http://github.com/gabrielelana/vim-markdown'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
-
 
 call plug#end()
 
