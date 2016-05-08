@@ -1,4 +1,4 @@
-dotfiles
+Dotfiles
 ========
 
-Dot files and more
+Custom dot files and other useful stuff for custom shell profile
