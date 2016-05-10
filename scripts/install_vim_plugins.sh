@@ -118,6 +118,10 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 "remove conceal for vim-json plugin
 let g:vim_json_syntax_conceal = 0
 
+if !empty(glob("/usr/bin/python3"))
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+endif
+
 
 END
 
