@@ -45,6 +45,7 @@ Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/altercation/vim-colors-solarized.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
+Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'http://github.com/ervandew/supertab.git'
 Plug 'http://github.com/kien/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
