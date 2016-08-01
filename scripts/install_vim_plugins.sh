@@ -116,6 +116,9 @@ autocmd FileType ruby set commentstring=#\ %s
 autocmd FileType php set commentstring=//\ %s
 autocmd FileType apache set commentstring=#\ %s
 
+"handle erb template syntax highlight
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.htm
+
 "git commit wrap message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
