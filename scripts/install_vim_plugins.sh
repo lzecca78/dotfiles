@@ -131,6 +131,11 @@ if !empty(glob("/usr/bin/python3"))
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 endif
 
+
+" associate Jenkinsfile to groovy syntax and filetype
+au BufReadPost Jenkinsfile set syntax=groovy
+au BufReadPost Jenkinsfile set filetype=groovy
+
 "speedup Ctrl-P on git projects
 let g:ctrlp_use_caching = 0
 if executable('ag')
