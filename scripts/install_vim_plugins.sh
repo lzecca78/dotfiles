@@ -107,6 +107,7 @@ set wildignore=.svn,.git
 set nocompatible
 set laststatus=2
 set lisp
+set t_RV=
 
 
 "enable autoremove of trailing dots
