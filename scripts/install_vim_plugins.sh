@@ -51,6 +51,7 @@ Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'http://github.com/ervandew/supertab.git'
 Plug 'http://github.com/kien/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'http://github.com/scrooloose/syntastic.git'
+Plug 'https://github.com/hashivim/vim-terraform.git'
 Plug 'https://github.com/tfnico/vim-gradle.git'
 Plug 'https://github.com/honza/dockerfile.vim'
 Plug 'http://github.com/vim-airline/vim-airline'
@@ -92,6 +93,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#tab_nr_type = 1
 
+"Terraform setup for auto 'terraform fmt'
+let g:terraform_align=1
+
+
+
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set incsearch
@@ -118,6 +124,8 @@ autocmd BufWrite * if ! &bin | :call setline(1,map(getline(1,"$"),'substitute(v:
 autocmd FileType ruby set commentstring=#\ %s
 autocmd FileType php set commentstring=//\ %s
 autocmd FileType apache set commentstring=#\ %s
+autocmd FileType terraform setlocal commentstring=#%s
+
 
 "handle erb template syntax highlight
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.htm
