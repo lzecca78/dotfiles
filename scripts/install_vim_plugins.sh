@@ -52,6 +52,7 @@ Plug 'http://github.com/ervandew/supertab.git'
 Plug 'http://github.com/kien/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'http://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/hashivim/vim-terraform.git'
+Plug 'https://github.com/juliosueiras/vim-terraform-completion'
 Plug 'https://github.com/tfnico/vim-gradle.git'
 Plug 'https://github.com/honza/dockerfile.vim'
 Plug 'http://github.com/vim-airline/vim-airline'
