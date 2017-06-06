@@ -131,6 +131,9 @@ autocmd FileType terraform setlocal commentstring=#%s
 "handle erb template syntax highlight
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.htm
 
+" Allow multiple paste
+xnoremap p pgvy
+
 "git commit wrap message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
