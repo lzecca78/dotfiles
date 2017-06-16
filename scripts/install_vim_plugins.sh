@@ -47,7 +47,7 @@ Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
-Plug 'http://github.com/tpope/vim-surround.git
+Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'http://github.com/ervandew/supertab.git'
