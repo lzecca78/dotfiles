@@ -133,6 +133,9 @@ autocmd FileType terraform setlocal commentstring=#%s
 "handle erb template syntax highlight
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.htm
 
+"handle eyaml template with yaml syntax"
+autocmd BufNewFile,BufRead *.eyaml   set syntax=yaml
+
 " Allow multiple paste
 xnoremap p pgvy
 
