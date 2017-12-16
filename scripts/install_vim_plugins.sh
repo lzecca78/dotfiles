@@ -50,7 +50,7 @@ Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'http://github.com/ervandew/supertab.git'
-Plug 'http://github.com/kien/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'http://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/hashivim/vim-terraform.git'
 Plug 'https://github.com/juliosueiras/vim-terraform-completion'
