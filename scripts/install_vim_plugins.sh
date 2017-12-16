@@ -41,7 +41,6 @@ endfunction
 
 
 Plug 'http://github.com/tpope/vim-fugitive.git'
-Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/altercation/vim-colors-solarized.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
