@@ -1,4 +1,17 @@
 #!/bin/bash
+#### check if vim 8 is installed, otherwise exit:
+vim_version=`vim --version | head -n1 | awk '{print $5}'`
+
+if [[ $vim_version =~ 8.* ]]
+then
+    echo "installed vim version is at least 8, we can proceed because is compatible with all plugins"
+else
+    echo "sorry, your vim version is not 8 (version = $vim_version), please add this ppa (sudo add-apt-repository ppa:jonathonf/vim
+
+) and then upgrade your vim version before retry this script"
+    exit 2
+fi
+
 
 apt-get install -y git
 cd ~
