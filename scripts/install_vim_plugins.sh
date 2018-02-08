@@ -51,7 +51,7 @@ Plug 'https://github.com/ain/vim-capistrano'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'http://github.com/ervandew/supertab.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
-Plug 'http://github.com/scrooloose/syntastic.git'
+Plug 'https://github.com/w0rp/ale'
 Plug 'https://github.com/hashivim/vim-terraform.git'
 Plug 'https://github.com/juliosueiras/vim-terraform-completion'
 Plug 'https://github.com/tfnico/vim-gradle.git'
