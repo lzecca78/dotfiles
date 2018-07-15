@@ -33,13 +33,12 @@ cat > ~/.vim/vimrc <<END
 
 call plug#begin('~/.vim/plugged')
 
-function!  SolarizedCustomization()
-"solarized modification
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-colorscheme solarized8_low
-endfunction
+"function!  SolarizedCustomization()
+"set background=dark
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256
+"colorscheme solarized8_low
+"endfunction
 
 
 function! PalenightCustomization()
@@ -58,7 +57,7 @@ endfunction
 
 
 Plug 'http://github.com/tpope/vim-fugitive.git'
-Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
+"Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('PalenightCustomization') }
 Plug 'http://github.com/tpope/vim-endwise.git'
