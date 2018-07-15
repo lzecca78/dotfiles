@@ -114,6 +114,8 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:terraform_align=1
 
 
+set background=dark
+colorscheme palenight
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
