@@ -43,6 +43,12 @@ let g:solarized_visibility="high"
 colorscheme solarized
 endfunction
 
+
+function! PalenightCustomization()
+set background=dark
+colorscheme palenight
+endfunction
+
 function! CtrlpCustomization()
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_custom_ignore = '\.git$\|\.tmp$\|\.work$'
@@ -56,7 +62,7 @@ endfunction
 Plug 'http://github.com/tpope/vim-fugitive.git'
 Plug 'http://github.com/altercation/vim-colors-solarized.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do':function('PalenightCustomization')}
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
@@ -83,9 +89,6 @@ Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
 
 call plug#end()
-
-set background=dark
-colorscheme palenight
 
 let g:syntastic_php_checkers=['php']
 
