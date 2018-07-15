@@ -38,9 +38,7 @@ function!  SolarizedCustomization()
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-colorscheme solarized
+colorscheme solarized8
 endfunction
 
 
@@ -60,9 +58,9 @@ endfunction
 
 
 Plug 'http://github.com/tpope/vim-fugitive.git'
-Plug 'http://github.com/altercation/vim-colors-solarized.git', { 'do': function('SolarizedCustomization') }
+Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
-Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do':function('PalenightCustomization')}
+Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('PalenightCustomization') }
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
