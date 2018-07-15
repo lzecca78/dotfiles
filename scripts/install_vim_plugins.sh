@@ -33,7 +33,6 @@ cat > ~/.vim/vimrc <<END
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('PalenightCustomization') }
 
 "function!  SolarizedCustomization()
 "set background=dark
@@ -41,12 +40,6 @@ Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('Palenig
 "let g:solarized_termcolors=256
 "colorscheme solarized8_low
 "endfunction
-
-
-function! PalenightCustomization()
-set background=dark
-colorscheme palenight
-endfunction
 
 function! CtrlpCustomization()
 set runtimepath^=~/.vim/plugged/ctrlp.vim
@@ -58,6 +51,7 @@ set AddTabularPattern block /=>
 endfunction
 
 
+Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
