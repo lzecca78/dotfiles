@@ -38,7 +38,7 @@ function!  SolarizedCustomization()
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-colorscheme solarized8
+colorscheme solarized8_low
 endfunction
 
 
