@@ -33,6 +33,8 @@ cat > ~/.vim/vimrc <<END
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('PalenightCustomization') }
+
 "function!  SolarizedCustomization()
 "set background=dark
 "let g:solarized_termtrans=1
@@ -59,7 +61,6 @@ endfunction
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
-Plug 'http://github.com/drewtempelmeyer/palenight.vim', {'do': function('PalenightCustomization') }
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
