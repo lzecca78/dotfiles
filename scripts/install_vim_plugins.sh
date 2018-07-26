@@ -111,8 +111,8 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:terraform_align=1
 
 
-#set background=dark
-#colorscheme palenight
+"set background=dark
+"colorscheme palenight
 
 "Go imports instead of gofmt
 let g:go_fmt_command = "goimports"
