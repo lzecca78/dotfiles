@@ -51,13 +51,14 @@ set AddTabularPattern block /=>
 endfunction
 
 
-Plug 'http://github.com/drewtempelmeyer/palenight.vim'
+"Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
-Plug 'https://github.com/fatih/vim-go'
+Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/molokai'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
 Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
@@ -110,8 +111,24 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:terraform_align=1
 
 
-set background=dark
-colorscheme palenight
+#set background=dark
+#colorscheme palenight
+
+"Go imports instead of gofmt
+let g:go_fmt_command = "goimports"
+"Go syntax highlights
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+let g:go_auto_sameids = 1
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
