@@ -51,10 +51,10 @@ set AddTabularPattern block /=>
 endfunction
 
 
-"Plug 'http://github.com/drewtempelmeyer/palenight.vim'
+Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
-Plug 'http://github.com/airblade/vim-gitgutter.git'
+Plug 'http://github.com/airblade/vim-gitgutter.git', { 'do': function('GitGutterLineHighlightsEnable') }
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -82,6 +82,7 @@ Plug 'http://github.com/gabrielelana/vim-markdown'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
 
+colorscheme molokai
 call plug#end()
 
 let g:syntastic_php_checkers=['php']
@@ -128,7 +129,6 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 let g:go_auto_sameids = 1
 let g:rehash256 = 1
 let g:molokai_original = 1
-colorscheme molokai
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
