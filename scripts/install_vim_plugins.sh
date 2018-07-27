@@ -54,7 +54,7 @@ endfunction
 Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
-Plug 'http://github.com/airblade/vim-gitgutter.git', { 'do': function('GitGutterLineHighlightsEnable') }
+Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
