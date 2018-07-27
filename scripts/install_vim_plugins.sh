@@ -82,7 +82,6 @@ Plug 'http://github.com/gabrielelana/vim-markdown'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
 
-colorscheme molokai
 call plug#end()
 
 let g:syntastic_php_checkers=['php']
@@ -129,6 +128,7 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 let g:go_auto_sameids = 1
 let g:rehash256 = 1
 let g:molokai_original = 1
+colorscheme molokai
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
