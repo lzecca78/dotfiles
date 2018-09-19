@@ -57,6 +57,7 @@ Plug 'http://github.com/tpope/vim-fugitive.git'
 Plug 'http://github.com/airblade/vim-gitgutter.git'
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
+Plug 'christianrondeau/vim-base64'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/jvirtanen/vim-hcl.git'
 Plug 'fatih/molokai'
