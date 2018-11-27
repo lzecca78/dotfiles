@@ -61,6 +61,7 @@ Plug 'christianrondeau/vim-base64'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/jvirtanen/vim-hcl.git'
 Plug 'fatih/molokai'
+Plug 'Yggdroot/indentLine'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
 Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
