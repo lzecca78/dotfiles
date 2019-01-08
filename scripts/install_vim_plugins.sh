@@ -12,8 +12,8 @@ else
     exit 2
 fi
 
-
 apt-get install -y git
+pip install yamllint
 cd ~
 #### make a backup
 
@@ -87,8 +87,6 @@ Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
 
 call plug#end()
-
-let g:syntastic_php_checkers=['php']
 
 "Airline setup
 let g:airline_powerline_fonts = 0
