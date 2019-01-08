@@ -113,6 +113,10 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:terraform_align=1
 
 
+"prettier configuration
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
 "set background=dark
 "colorscheme palenight
 
