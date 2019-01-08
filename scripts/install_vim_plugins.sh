@@ -66,6 +66,7 @@ Plug 'http://github.com/jiangmiao/auto-pairs.git'
 Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'http://github.com/ervandew/supertab.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'https://github.com/w0rp/ale'
