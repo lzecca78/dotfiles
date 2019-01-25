@@ -164,6 +164,9 @@ autocmd FileType php set commentstring=//\ %s
 autocmd FileType apache set commentstring=#\ %s
 autocmd FileType terraform setlocal commentstring=#%s
 
+"set autoprettify
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.yml,*.html Prettier
 
 "handle erb template syntax highlight
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.htm
