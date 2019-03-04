@@ -60,6 +60,7 @@ Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'christianrondeau/vim-base64'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/jvirtanen/vim-hcl.git'
+Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'fatih/molokai'
 Plug 'Yggdroot/indentLine'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
