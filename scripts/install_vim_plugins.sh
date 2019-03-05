@@ -113,6 +113,10 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 "Terraform setup for auto 'terraform fmt'
 let g:terraform_align=1
 
+"folding
+set foldmethod=indent
+set foldlevelstart=20
+
 
 "prettier configuration
 let g:prettier#autoformat = 0
