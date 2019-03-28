@@ -85,7 +85,7 @@ Plug 'http://github.com/jelera/vim-javascript-syntax.git'
 Plug 'http://github.com/tpope/vim-commentary'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
