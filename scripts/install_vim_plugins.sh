@@ -210,6 +210,16 @@ else
     \ }
 endif
 
+" do not use arrows!!
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+
+nnoremap <Left> :echoe "Use h"<nop>
+nnoremap <Right> :echoe "Use l"<nop>
+nnoremap <Up> :echoe "Use k"<nop>
+nnoremap <Down> :echoe "Use j"<nop>
 
 END
 
