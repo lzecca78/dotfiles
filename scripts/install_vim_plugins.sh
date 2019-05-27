@@ -33,6 +33,8 @@ cat > ~/.vim/vimrc <<END
 
 call plug#begin('~/.vim/plugged')
 
+" remap leader
+set mapleader = ','
 
 "function!  SolarizedCustomization()
 "set background=dark
@@ -119,6 +121,14 @@ let g:terraform_align=1
 set foldmethod=indent
 set foldlevelstart=20
 
+" fzf
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>a :Ag<CR>
+nnoremap <leader>h :History<CR>
+nnoremap <Leader>l :BLines<CR>
+nnoremap <Leader>L :Lines<CR>
+nnoremap <Leader>C :Commands<CR>
 
 "prettier configuration
 let g:prettier#autoformat = 0
