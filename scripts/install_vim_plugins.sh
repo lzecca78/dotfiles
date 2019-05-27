@@ -86,6 +86,8 @@ Plug 'http://github.com/tpope/vim-commentary'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
 Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
