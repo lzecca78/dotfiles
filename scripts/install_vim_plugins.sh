@@ -34,7 +34,7 @@ cat > ~/.vim/vimrc <<END
 call plug#begin('~/.vim/plugged')
 
 " remap leader
-set mapleader=','
+let mapleader=','
 
 "function!  SolarizedCustomization()
 "set background=dark
