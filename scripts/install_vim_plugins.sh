@@ -12,7 +12,6 @@ else
     exit 2
 fi
 
-apt-get install -y git
 pip install yamllint
 cd ~
 #### make a backup
@@ -57,6 +56,7 @@ Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
 "Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
+Plug 'Valloric/YouCompleteMe', {'do': 'python install.py --go-completer'}
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
 Plug 'christianrondeau/vim-base64'
@@ -65,12 +65,15 @@ Plug 'https://github.com/jvirtanen/vim-hcl.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'fatih/molokai'
 Plug 'Yggdroot/indentLine'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-gocode.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
 Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
 Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'http://github.com/ervandew/supertab.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'https://github.com/w0rp/ale'
 Plug 'https://github.com/hashivim/vim-terraform.git'
@@ -141,6 +144,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 let g:go_fmt_command = "goimports"
 "Go syntax highlights
 let g:go_highlight_types = 1
+let g:go_auto_type_info = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
@@ -154,6 +158,24 @@ let g:go_auto_sameids = 1
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
+
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+
+call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+    \ 'name': 'gocode',
+    \ 'whitelist': ['go'],
+    \ 'completor': function('asyncomplete#sources#gocode#completor'),
+    \ 'config': {
+    \    'gocode_path': expand('~/go/bin/gocode')
+    \  },
+    \ }))
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
