@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###vars
-kustomize_version='1.0.7'
+kustomize_version='2.0.3'
 ark_version='0.9.3'
 
 
