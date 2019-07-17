@@ -22,6 +22,13 @@ mkdir .vim
 
 cat > ~/.vim/coc-settings.json << EOF
 {
+  "yaml.completion": true,
+  "yaml.validate": true,
+  "yaml.format.enable": true,
+  "yaml.schemas": {
+    "kubernetes": ["/*.yaml", "/*.yml"]
+  },
+
   "languageserver": {
     "golang": {
       "command": "gopls",
