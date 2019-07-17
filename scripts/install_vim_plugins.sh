@@ -12,12 +12,25 @@ else
     exit 2
 fi
 
+apt-get install -y git
 pip install yamllint
 cd ~
 #### make a backup
 
 mv ~/.vim ~/vim_`date +%y%m%d%H%M%S`
 mkdir .vim
+
+cat > ~/.vim/coc-settings.json << EOF
+{
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  }
+}
+EOF
 
 cd ~
 ln -s ~/.vim/vimrc .vimrc
@@ -47,32 +60,22 @@ set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_custom_ignore = '\.git$\|\.tmp$\|\.work$'
 endfunction
 
-function! TabularCustomization()
-set AddTabularPattern block /=>
-endfunction
-
-
 Plug 'http://github.com/drewtempelmeyer/palenight.vim'
 Plug 'http://github.com/tpope/vim-fugitive.git'
-"Plug 'http://github.com/lifepillar/vim-solarized8.git', { 'do': function('SolarizedCustomization') }
 Plug 'http://github.com/airblade/vim-gitgutter.git'
-Plug 'Valloric/YouCompleteMe', {'do': 'python install.py --go-completer'}
 Plug 'http://github.com/tpope/vim-endwise.git'
 Plug 'http://github.com/kana/vim-textobj-user'
+Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'christianrondeau/vim-base64'
 Plug 'https://github.com/fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/jvirtanen/vim-hcl.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'fatih/molokai'
 Plug 'Yggdroot/indentLine'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-gocode.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'http://github.com/jiangmiao/auto-pairs.git'
 Plug 'http://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/ain/vim-capistrano'
-Plug 'http://github.com/nelstrom/vim-textobj-rubyblock'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'https://github.com/w0rp/ale'
@@ -82,14 +85,13 @@ Plug 'https://github.com/tfnico/vim-gradle.git'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'http://github.com/vim-airline/vim-airline'
 Plug 'http://github.com/vim-airline/vim-airline-themes'
-Plug 'http://github.com/taku-o/vim-changed.git'
 Plug 'http://github.com/rodjek/vim-puppet.git'
 Plug 'http://github.com/derekwyatt/vim-scala.git'
 Plug 'http://github.com/elzr/vim-json.git'
 Plug 'http://github.com/jelera/vim-javascript-syntax.git'
 Plug 'http://github.com/tpope/vim-commentary'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
-Plug 'http://github.com/godlygeek/tabular.git', { 'do': function('TabularCustomization') }
+Plug 'http://github.com/godlygeek/tabular.git'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -152,30 +154,141 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_def_mode='godef'
-au filetype go inoremap <buffer> . .<C-x><C-o>
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 let g:go_auto_sameids = 1
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
 
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
+let g:coc_global_extensions = ['coc-yaml', 'coc-json']
 
-call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-    \ 'name': 'gocode',
-    \ 'whitelist': ['go'],
-    \ 'completor': function('asyncomplete#sources#gocode#completor'),
-    \ 'config': {
-    \    'gocode_path': expand('~/go/bin/gocode')
-    \  },
-    \ }))
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, <C-g>u means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+""inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use [c and ]c to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: <leader>aap for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+" Use :Format to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use :Fold to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use :OR for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout :h coc-status
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
 
 set autoindent
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -259,6 +372,5 @@ nnoremap <Down> :echoe "Use j"<nop>
 
 END
 
-#vim -c ':helptags ~/.vim/plugged/ctrlp.vim/doc|q!'
 #vim -c ':Helptags|q!'
 vim </dev/tty +PlugInstall +PlugClean +qall
