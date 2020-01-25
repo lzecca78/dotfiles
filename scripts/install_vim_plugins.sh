@@ -153,7 +153,7 @@ let g:NERDTreeShowIgnoredStatus = 1
 let g:terraform_align=1
 
 "folding
-set foldmethod=indent
+set foldmethod=manual
 set foldlevelstart=20
 
 " fzf
@@ -171,6 +171,8 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 "set background=dark
 "colorscheme palenight
+set backspace=indent,eol,start
+
 
 "Go imports instead of gofmt
 let g:go_fmt_command = "goimports"
