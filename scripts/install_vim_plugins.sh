@@ -339,6 +339,9 @@ set laststatus=2
 set lisp
 set t_RV=
 
+"indentation for yaml file
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 
 "enable autoremove of trailing dots
 set list listchars=tab:»·,trail:·
