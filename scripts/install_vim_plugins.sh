@@ -344,6 +344,10 @@ set laststatus=2
 set lisp
 set t_RV=
 
+"treat dash as keyword
+set iskeyword+=-
+
+
 "indentation for yaml file
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
