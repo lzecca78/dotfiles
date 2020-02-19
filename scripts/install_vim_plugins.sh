@@ -403,6 +403,15 @@ else
     \ }
 endif
 
+
+"quickly move beteen buffer
+map <C-J> :bprevious<CR>
+map <C-K> :bnext<CR>
+
+" move between splits
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " do not use arrows!!
 noremap <up> <nop>
 noremap <down> <nop>
