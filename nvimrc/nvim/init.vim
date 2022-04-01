@@ -23,6 +23,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tpope/vim-fugitive.git'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'towolf/vim-helm'
+Plug 'tpope/vim-dotenv'
 Plug 'https://github.com/dhruvasagar/vim-zoom.git'
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'kana/vim-textobj-user'
@@ -38,7 +42,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'https://github.com/hashivim/vim-terraform.git'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'ekalinin/Dockerfile.vim'
@@ -121,6 +125,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#tab_nr_type = 1
 
+" Markdown
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_new_list_item_indent=0
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.mkd set filetype=markdown
 
 " Ale Setup
 let g:ale_sign_error                  = '✘'
@@ -134,11 +143,19 @@ let g:ale_lint_on_save                = 1
 let g:ale_fix_on_save                 = 1
 
 let g:ale_linters = {
-\   'markdown':      ['writegood'],
+\   'markdown' : ['markdownlint'],
+\   'python'   : ['flake8'],
+\   'bash'     : ['shellcheck'],
+\   'sh'       : ['shellcheck'],
 \}
 
 let g:ale_fixers = {
-\   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+\   'sh'       : ['shfmt'],
+\   'bash'     : ['shfmt'],
+\   'json'     : ['prettier'],
+\   'markdown' : ['prettier'],
+\   'yaml'     : ['prettier'],
+\   'python'   : ['black'],
 \}
 
 
