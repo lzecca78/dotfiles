@@ -66,6 +66,7 @@ Plug 'xolox/vim-notes'
 Plug 'https://github.com/markcornick/vim-vagrant.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/github/copilot.vim.git'
 
 "my plugins end
 
@@ -493,6 +494,15 @@ else
     \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
     \ }
 endif
+
+
+" enable vim-copilot for all files
+let g:copilot#enable = 1
+let g:copilot_filetypes = {
+    \ 'gitcommit': v:true,
+    \ 'markdown': v:true,
+    \ 'yaml': v:true
+    \ }
 
 
 "quickly move beteen buffer

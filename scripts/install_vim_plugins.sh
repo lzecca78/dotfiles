@@ -12,8 +12,8 @@ else
     exit 2
 fi
 
-apt-get install -y git
 pip install yamllint
+npm install -g write-good
 cd ~
 #### make a backup
 
@@ -101,7 +101,6 @@ Plug 'http://github.com/jelera/vim-javascript-syntax.git'
 Plug 'http://github.com/tpope/vim-commentary'
 Plug 'http://github.com/markcornick/vim-vagrant.git'
 Plug 'http://github.com/godlygeek/tabular.git'
-Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -128,6 +127,26 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#tab_nr_type = 1
 
+
+" Ale Setup
+let g:ale_sign_error                  = '✘'
+let g:ale_sign_warning                = '⚠'
+highlight ALEErrorSign ctermbg        =NONE ctermfg=red
+highlight ALEWarningSign ctermbg      =NONE ctermfg=yellow
+let g:ale_linters_explicit            = 1
+let g:ale_lint_on_text_changed        = 'never'
+let g:ale_lint_on_enter               = 0
+let g:ale_lint_on_save                = 1
+let g:ale_fix_on_save                 = 1
+
+let g:ale_linters = {
+\   'markdown':      ['writegood'],
+\}
+
+let g:ale_fixers = {
+\   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
 " NerdTree Setup
 autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -141,7 +160,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Untracked" : "✭",
     \ "Renamed"   : "➜",
     \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
     \ "Dirty"     : "✗",
     \ "Clean"     : "✔︎",
     \ 'Ignored'   : '☒',
@@ -153,8 +171,10 @@ let g:NERDTreeShowIgnoredStatus = 1
 let g:terraform_align=1
 
 "folding
-set foldmethod=manual
-set foldlevelstart=20
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 " fzf
 nnoremap <leader>b :Buffers<CR>
