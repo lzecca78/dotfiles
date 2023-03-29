@@ -4,7 +4,7 @@
 # Cleanup previous setup
 echo "cleaning up temp dirs"
 rm -rf nvim/autoload
-rm -rf nvim/plugged
+#rm -rf nvim/plugged
 # Install neovim-python; vim-plug requires neovim-python
 if [[ "$(command -v pip2)" != "" ]]; then
   pip2 install --user pynvim jedi

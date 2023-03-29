@@ -1,6 +1,7 @@
 "No compatibility to traditional vi
 set nocompatible
-
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 "vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
@@ -17,6 +18,8 @@ endfunction
 
 "My plugins
 "
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': './install.sh'
@@ -35,11 +38,13 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'christianrondeau/vim-base64'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/jvirtanen/vim-hcl.git'
-Plug 'https://github.com/mhinz/vim-startify.git'
+Plug 'mhinz/vim-startify'
 Plug 'fatih/molokai'
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdtree'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'romgrk/nvim-treesitter-context'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'do': function('CtrlpCustomization') }
 Plug 'dense-analysis/ale'
@@ -49,7 +54,6 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/rodjek/vim-puppet.git'
-Plug 'derekwyatt/vim-scala.git'
 Plug 'https://github.com/elzr/vim-json.git'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
@@ -67,6 +71,9 @@ Plug 'https://github.com/markcornick/vim-vagrant.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/github/copilot.vim.git'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'sindrets/diffview.nvim'
 
 "my plugins end
 
@@ -103,6 +110,13 @@ au FileType gitcommit setl spell
 
 "English spelling checker.
 setlocal spelllang=en_us
+
+
+" Telescope setup
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 "Airline setup
@@ -168,33 +182,33 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 "
 "
 "
-autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-set autochdir
-let NERDTreeChDirMode=2
-let g:NERDTreeShowIgnoredStatus = 1
-au VimEnter *  NERDTreeFind | wincmd p
-autocmd StdinReadPre * let s:std_in=1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeDirArrows = 1
-
-" Close nerdtree and vim on close file
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd vimenter * NERDTree
+"map <C-n> :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let NERDTreeShowHidden=1
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
+"let g:NERDTreeIndicatorMapCustom = {
+"    \ "Modified"  : "✹",
+"    \ "Staged"    : "✚",
+"    \ "Untracked" : "✭",
+"    \ "Renamed"   : "➜",
+"    \ "Unmerged"  : "═",
+"    \ "Dirty"     : "✗",
+"    \ "Clean"     : "✔︎",
+"    \ 'Ignored'   : '☒',
+"    \ "Unknown"   : "?"
+"    \ }
+"set autochdir
+"let NERDTreeChDirMode=2
+"let g:NERDTreeShowIgnoredStatus = 1
+"au VimEnter *  NERDTreeFind | wincmd p
+"autocmd StdinReadPre * let s:std_in=1
+"let NERDTreeAutoDeleteBuffer = 1
+"let NERDTreeDirArrows = 1
+"
+"" Close nerdtree and vim on close file
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "Terraform setup for auto 'terraform fmt'
 let g:terraform_align=1
@@ -523,3 +537,142 @@ nnoremap <Left> :echoe "Use h"<nop>
 nnoremap <Right> :echoe "Use l"<nop>
 nnoremap <Up> :echoe "Use k"<nop>
 nnoremap <Down> :echoe "Use j"<nop>
+
+lua require'nvim-tree'.setup {}
+lua require("nvim-tree.api").tree.open()
+
+lua << EOF
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require('nvim-treesitter.configs').setup({
+    ensure_installed = "all",
+    auto_install = true,
+    sync_install = false,
+    ignore_install = {},
+    highlight = {
+        enable = true,
+        disable = {},
+        additional_vim_regex_highlighting = false
+    },
+    indent = {
+        enable = true
+    }
+})
+
+-- nvim-tree setup
+local M = {}
+
+function M.setup()
+  local tree = require("nvim-tree")
+
+  tree.setup({
+    create_in_closed_folder = true,
+    hijack_cursor = true,
+    open_on_setup = true,
+    open_on_setup_file = true,
+    focus_empty_on_setup = true,
+    sync_root_with_cwd = true,
+    view = {
+      adaptive_size = false,
+      mappings = {
+        list = {
+          { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
+          { key = "<C-v>", action = "" }, -- vsplit
+          { key = "<C-x>", action = "" }, -- split
+          { key = "<C-t>", action = "" }, -- tabnew
+          { key = "<BS>", action = "" }, -- close_node
+          { key = "<Tab>", action = "" }, -- preview
+          { key = "D", action = "" }, -- trash
+          { key = "[e", action = "" }, -- prev_diag_item
+          { key = "]e", action = "" }, -- next_diag_item
+          { key = "[c", action = "" }, -- prev_git_item
+          { key = "]c", action = "" }, -- next_git_item
+          { key = "-", action = "" }, -- dir_up
+          { key = "s", action = "" }, -- system_open
+          { key = "W", action = "" }, -- collapse_all
+          { key = "g?", action = "" }, -- toggle_help
+
+          { key = "d", action = "cd" }, -- remove
+          { key = "x", action = "remove" }, -- cut
+
+          { key = "t", action = "cut" },
+          { key = "<Space>p", action = "prev_diag_item" },
+          { key = "<Space>.", action = "next_diag_item" },
+          { key = "<Space>k", action = "prev_git_item" },
+          { key = "<Space>j", action = "next_git_item" },
+          { key = "u", action = "dir_up" },
+          { key = "'", action = "close_node" },
+          { key = '"', action = "collapse_all" },
+          { key = "?", action = "toggle_help" },
+        },
+      },
+    },
+    renderer = {
+      full_name = true,
+      group_empty = true,
+      special_files = {},
+      symlink_destination = false,
+      indent_markers = {
+        enable = true,
+      },
+      icons = {
+        git_placement = "signcolumn",
+        show = {
+          file = true,
+          folder = false,
+          folder_arrow = false,
+          git = true,
+        },
+      },
+    },
+    update_focused_file = {
+      enable = true,
+      update_root = true,
+      ignore_list = { "help" },
+    },
+    diagnostics = {
+      enable = true,
+      show_on_dirs = true,
+    },
+    filters = {
+      custom = {
+        "^.git$",
+      },
+    },
+    actions = {
+      change_dir = {
+        enable = false,
+        restrict_above_cwd = true,
+      },
+      open_file = {
+        resize_window = true,
+        window_picker = {
+          chars = "aoeui",
+        },
+      },
+      remove_file = {
+        close_window = false,
+      },
+    },
+    log = {
+      enable = false,
+      truncate = true,
+      types = {
+        all = false,
+        config = false,
+        copy_paste = false,
+        diagnostics = false,
+        git = false,
+        profile = false,
+        watcher = false,
+      },
+    },
+  })
+end
+
+return M
+
+EOF
+
+nnoremap ff :NvimTreeToggle<cr>
