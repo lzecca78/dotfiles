@@ -20,10 +20,11 @@ endfunction
 "
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+Plug 'williamboman/mason.nvim'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': './install.sh'
+"    \ }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tpope/vim-fugitive.git'
 Plug 'godlygeek/tabular'
@@ -539,14 +540,18 @@ nnoremap <Up> :echoe "Use k"<nop>
 nnoremap <Down> :echoe "Use j"<nop>
 
 lua require'nvim-tree'.setup {}
-lua require("nvim-tree.api").tree.open()
+
+"lua require("nvim-tree.api").tree.open()
 
 lua << EOF
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+require("mason").setup()
+
+
 require('nvim-treesitter.configs').setup({
-    ensure_installed = "all",
+    -- ensure_installed = "all",
     auto_install = true,
     sync_install = false,
     ignore_install = {},
